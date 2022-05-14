@@ -42,5 +42,9 @@ class SiteController extends Controller
         return view('sessions',compact('sessions'));
     }
 
+    public function chatbot(){
+        return view('chatbot');
+    }
+
     
 }

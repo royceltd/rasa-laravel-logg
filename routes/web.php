@@ -22,3 +22,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('sessions',[SiteController::class,'getSessions']);
 Route::get('/',[SiteController::class,'getSessions']);
 Route::get('session/{id}',[SiteController::class,'getLogs']);
+Route::get('chatbot',[SiteController::class,'chatbot']);

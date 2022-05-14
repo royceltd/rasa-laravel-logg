@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Rasa Logs</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -72,11 +72,11 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Chatbot</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{url('humaagent')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Human Agent</span></a>
-            </li>
+            </li> --}}
 
             <!-- Nav Item - Tables -->
            
