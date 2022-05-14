@@ -1,25 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-   <!-- CSS only -->
-   <!-- CSS only -->
-<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
-{{-- <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> --}}
-<!-- JavaScript Bundle with Popper -->
 
-
-    
-</head>
-<body>
-
-    <br />
-    <br />
+@extends('layouts.main')
+   
 
    
+@section('content')
 
     <table id="example" class="display" style="width:100%">
         <thead>
@@ -76,6 +60,5 @@
             $('#example').DataTable();
         } );
     </script>
-    
-</body>
-</html>
+
+    @stop

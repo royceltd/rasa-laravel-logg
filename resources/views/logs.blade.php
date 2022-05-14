@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-   <!-- CSS only -->
-   <!-- CSS only -->
-<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
-{{-- <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> --}}
-<!-- JavaScript Bundle with Popper -->
+@extends('layouts.main')
 
-
-    
-</head>
-<body>
+nnnnnnnnn
     <br />
    <center> <button> <a href="{{url('/')}}">Go back to session</a></button></center>
     <br />
@@ -73,5 +59,3 @@
         } );
     </script>
     
-</body>
-</html>
