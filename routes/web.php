@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,8 @@ Route::get('sessions',[SiteController::class,'getSessions']);
 Route::get('/',[SiteController::class,'getSessions']);
 Route::get('session/{id}',[SiteController::class,'getLogs']);
 Route::get('chatbot',[SiteController::class,'chatbot']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/add-question',[AdminController::class,'questions']);
+    Route::post('/add-question',[AdminController::class,'addQuestion']);
+});
