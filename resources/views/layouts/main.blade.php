@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rasa Logs</title>
+    <title>Client Feedback</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -38,7 +38,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Rasa Logs <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3"> Feedback</div>
             </a>
 
             <!-- Divider -->
@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href={{url('/')}}>
+                <a class="nav-link" href={{url('/admin/answers')}}>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -56,7 +56,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Chatbot
+                Questions
             </div>
 
             
@@ -68,15 +68,15 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
-                <a class="nav-link" href={{url('/chatbot')}}>
+                <a class="nav-link" href={{url('/admin/add-question')}}>
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Chatbot</span></a>
+                    <span>Questions</span></a>
             </li>
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{url('humaagent')}}">
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Human Agent</span></a>
-            </li> --}}
+                    <span>Client Form</span></a>
+            </li>
 
             <!-- Nav Item - Tables -->
            

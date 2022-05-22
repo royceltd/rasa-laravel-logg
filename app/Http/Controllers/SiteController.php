@@ -2,14 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\ChatLog;
 use App\Models\LogSession;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class SiteController extends Controller
 {
     //
+
+
+    public function getQuestions(){
+        $quiz= Question::all();
+        return view('clients.questions',compact('quiz'));
+    }
+
+    public function saveStartquiz(Request $request){
+        // dd($request->all());
+        $arr= array_combine($request->question,$request->answer);
+
+        // print_r($arr);
+
+        foreach($arr  as $key=>$value){
+
+            // echo $key."".$value;
+            $ans= new Answer;
+
+            $ans->question_id=$key;
+            $ans->phone_number=$request->phone_number;
+            $ans->answer=$value;
+
+            $ans->save();
+
+        }
+
+
+        return back()->with('status','Thanks for your feedback');
+
+        
+
+    }
 
     public function saveLogs(Request $request){
         // Log::info("hello");

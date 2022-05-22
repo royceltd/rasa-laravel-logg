@@ -21,11 +21,17 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('logs',[SiteController::class,'getLogs']);
 Route::get('sessions',[SiteController::class,'getSessions']);
-Route::get('/',[SiteController::class,'getSessions']);
+// Route::get('/',[SiteController::class,'getSessions']);
+Route::get('/',[SiteController::class,'getQuestions']);
 Route::get('session/{id}',[SiteController::class,'getLogs']);
 Route::get('chatbot',[SiteController::class,'chatbot']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/add-question',[AdminController::class,'questions']);
     Route::post('/add-question',[AdminController::class,'addQuestion']);
+    Route::get('/answers',[AdminController::class,'getAnswers']);
+});
+Route::prefix('clients')->group(function () {
+    Route::get('/startquiz',[SiteController::class,'getQuestions']);
+    Route::post('/startquiz',[SiteController::class,'saveStartquiz']);
 });
