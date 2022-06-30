@@ -1,135 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Questions</title>
-
-     <!-- Custom fonts for this template -->
-     <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-     <link
-         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-         rel="stylesheet">
- 
-     <!-- Custom styles for this template -->
-     <link href="{{asset('assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
- 
-     <!-- Custom styles for this page -->
-     <link href="{{asset('assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KRB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body>
+    
+    <div class="flex flex-col md:mx-20 py-5">
+        <div class="flex flex-row">
+            <a href="{{url('/admin')}}" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Admin</a>
 
-<body class="bg-gradient-primary">
+        </div>
+        <form action="{{url('clients/startquiz')}}" method="POST">
 
-    <div class="container">
-        <a href="{{url('/admin/answers')}}" class="btn btn-success">Admin</a>
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
+            @csrf
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+        <div>
+            <div class="flex justify-center">
+                <div class="mb-3 xl:w-96">
+                  <label for="exampleText0" class="form-label inline-block mb-2 text-gray-700"
+                    >Phone Number</label
+                  >
+                  <input
+                  name="phone_number"
+                    type="text"
+                    class="
+                      form-control
+                      block
+                      w-full
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded
+                      transition
+                      ease-in-out
+                      m-0
+                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                    "
+                    id="exampleText0"
+                    placeholder="Phone Number"
+                    required
+                  />
+                </div>
+              </div>
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                @if (session('status'))
-                                    <div class="alert alert-success">
-                                        {{ session('status') }}
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                        <div>
-                            <form action="{{url('clients/startquiz')}}" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-sm-1">
-
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="form-group">
-                                            <label>Phone Number</label>
-                                            <input type="text" class="form-control" name="phone_number" required />
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            {{-- </form> --}}
-                        </div>
-                        <div>
-                            {{-- Questions --}}
-                            {{-- <form action="{{url('/')}}" method="POST" >
-                                @csrf --}}
-                            @foreach ($quiz as $q)
-
-                            <input type="hidden" value="{{$q->id}}" name="question[]" />
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h3 style="color: blue">  {{$q->title}} </h3>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="answer[{{$q->id}}]" id="inlineRadio1" value="5" required>
-                                <label class="form-check-label" for="inlineRadio1">Very Good</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="answer[{{$q->id}}]" id="inlineRadio2" value="4" >
-                                <label class="form-check-label" for="inlineRadio2">Good</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="answer[{{$q->id}}]" id="inlineRadio2" value="3" >
-                                <label class="form-check-label" for="inlineRadio2">Bad</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="answer[{{$q->id}}]" id="inlineRadio2" value="2" >
-                                <label class="form-check-label" for="inlineRadio2">Dissapointed</label>
-                              </div>
-
-                                </div>
-                            </div>
-
-                           
-                              
-
-
-                            @endforeach
-                            <div class="row">
-                                <div class="col-sm-1">
-
-                                </div>
-                                <div class="col-sm-5">
-                                    <input type="submit" class="btn btn-primary" />
-                                </div>
-                            </div>
-                        </form>
-
-                        </div>
+        </div>
+        <div>
+            
+                
+                @foreach ($quiz as $q)
+                <input type="hidden" value="{{$q->id}}" name="question[]" />
+                <div class="text-2xl font-black py-3">{{$q->title}} </div>
+                <div class="flex flex-row flex-wrap md:space-x-4">
+                    <div class="flex items-center">
+                        <input  id="default-radio-2" type="radio" value="1" name="answer[{{$q->id}}]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required>
+                        <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900 ">Very Dissatisfied</label>
                     </div>
+                    <div class="flex items-center">
+                        <input  id="default-radio-2" type="radio" value="2" name="answer[{{$q->id}}]"class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900">Dissatisfied</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input  id="default-radio-2" type="radio" value="3" name="answer[{{$q->id}}]"class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900">Neutral</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input  id="default-radio-2" type="radio" value="4" name="answer[{{$q->id}}]"class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900">Satisfied</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input  id="default-radio-2" type="radio" value="5" name="answer[{{$q->id}}]"class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900">Very Satisfied</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input  id="default-radio-2" type="radio" value="99" name="answer[{{$q->id}}]"class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900">Don’t Know</label>
+                    </div>
+
                 </div>
 
-            </div>
 
+                @endforeach
+
+                <div class="py-6">
+                    <button type="submit" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">Submit</button>
+
+                </div>
+            </form>
         </div>
 
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
 </body>
-
 </html>
