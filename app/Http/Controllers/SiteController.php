@@ -6,6 +6,7 @@ use App\Models\Answer;
 use App\Models\ChatLog;
 use App\Models\LogSession;
 use App\Models\Question;
+use App\Models\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -21,6 +22,11 @@ class SiteController extends Controller
 
     public function saveStartquiz(Request $request){
         // dd($request->all());
+        $response= new Response;
+        $response->phone_number=$request->phone_number;
+        $response->save();
+
+
         $arr= array_combine($request->question,$request->answer);
 
         // print_r($arr);

@@ -4,11 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\Question;
+use App\Models\Response;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     //'
+
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+        
+    }
+
+    public function responses(){
+        $response=Response::orderBy('id','DESC')->get();
+        return view('admin.responses',compact('response'));
+    }
 
     public function questions(){
         $questions= Question::orderBy('id','ASC')->get();
@@ -26,8 +39,11 @@ class AdminController extends Controller
 
     }
 
-    public function getAnswers(){
-        $answers= Answer::join('questions','questions.id','=','answers.question_id')->select('questions.title','answers.*')->get();
+    public function getAnswers($id){
+        $answers= Answer::join('questions','questions.id','=','answers.question_id')
+        ->select('questions.title','answers.*')
+        ->where('answers.phone_number',$id)
+        ->get();
         return view('admin.answers', compact('answers'));
     }
 }

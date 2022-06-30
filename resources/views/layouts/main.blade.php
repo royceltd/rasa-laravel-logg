@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Client Feedback</title>
+    <title>KRB</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -36,9 +36,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    {{-- <i class="fas fa-laugh-wink"></i> --}}
                 </div>
-                <div class="sidebar-brand-text mx-3"> Feedback</div>
+                <div class="sidebar-brand-text mx-3"> KRB</div>
             </a>
 
             <!-- Divider -->
@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href={{url('/admin/answers')}}>
+                <a class="nav-link" href={{url('/admin')}}>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -197,7 +197,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; KRB @php echo Date('Y') @endphp</span>
                     </div>
                 </div>
             </footer>

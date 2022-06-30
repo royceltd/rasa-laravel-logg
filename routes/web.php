@@ -29,7 +29,9 @@ Route::get('chatbot',[SiteController::class,'chatbot']);
 Route::prefix('admin')->group(function () {
     Route::get('/add-question',[AdminController::class,'questions']);
     Route::post('/add-question',[AdminController::class,'addQuestion']);
-    Route::get('/answers',[AdminController::class,'getAnswers']);
+    // Route::get('/answers',[AdminController::class,'getAnswers']);
+    Route::get('/',[AdminController::class,'responses']);
+    Route::get('/responses/{phone}',[AdminController::class,'getAnswers']);
 });
 Route::prefix('clients')->group(function () {
     Route::get('/startquiz',[SiteController::class,'getQuestions']);
