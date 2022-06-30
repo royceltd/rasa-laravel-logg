@@ -35,3 +35,7 @@ Route::prefix('clients')->group(function () {
     Route::get('/startquiz',[SiteController::class,'getQuestions']);
     Route::post('/startquiz',[SiteController::class,'saveStartquiz']);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
