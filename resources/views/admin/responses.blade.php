@@ -70,7 +70,9 @@
                 </td>
                 
                 
-                <td>{{$response->created_at}}</td>
+                <td>
+                    {{$response->created_at}}
+                </td>
 
                 <td>
                     <a href="{{url('/admin/responses',$response->phone_number)}}" class="btn btn-success">Open</a>
