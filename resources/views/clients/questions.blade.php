@@ -74,7 +74,7 @@ On a scale of 1 to 5 where 1 IS VERY DISSATISFIED and 5 IS VERY SATISFIED, how s
                 
                 @foreach ($quiz as $q)
                 <input type="hidden" value="{{$q->id}}" name="question[]" />
-                <div class="md:text-2xl text-yellow-400 font-black py-3">{{$q->title}} </div>
+                <div class="md:text-2xl text-green-500 font-black py-3">{{$q->title}} </div>
                 <div class="flex flex-row flex-wrap space-x-4 space-y-3">
                     <div class="flex items-center">
                         <input  id="default-radio-2" type="radio" value="1" name="answer[{{$q->id}}]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required>
