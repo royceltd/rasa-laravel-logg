@@ -85,6 +85,24 @@ class SiteController extends Controller
     public function chatbot(){
         return view('chatbot');
     }
+    public function testChart(){
+        $chartjs = app()->chartjs
+        ->name('pieChartTest')
+        ->type('pie')
+        ->size(['width' => 400, 'height' => 200])
+        ->labels(['1', '2','3','4','5'])
+        ->datasets([
+            [
+                'backgroundColor' => ['#FF6384', '#36A2EB','red'],
+                'hoverBackgroundColor' => ['#FF6384', '#36A2EB'],
+                'data' => [10, 20,30,40,50]
+            ]
+        ])
+        ->options([]);
+
+return view('example', compact('chartjs'));
+
+    }
 
     
 }
