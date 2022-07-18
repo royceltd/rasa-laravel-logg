@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\ChatLog;
+use App\Models\Customer;
 use App\Models\LogSession;
 use App\Models\Question;
 use App\Models\Response;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -18,6 +20,33 @@ class SiteController extends Controller
     public function getQuestions(){
         $quiz= Question::all();
         return view('clients.questions',compact('quiz'));
+    }
+    public function welcome(){
+        return view('clients.welcome');
+    }
+
+    public function newCustomer(){
+        return view('clients.new-customer');
+    }
+
+    public function saveCustomer(Request $request){
+        $customer= Customer::where('phone','=',$request->phone_number)->first();
+
+        if(!$customer){
+            $customer= new Customer;
+            $customer->name=$request->name;
+            $customer->email=$request->email;
+            $customer->phone=$request->phone_number;
+            $customer->save();
+        }
+
+        $newvisit= new Visit;
+        $newvisit->phone_number=$request->phone_number;
+        $newvisit->person_to_see=$request->person_to_see;
+        $newvisit->save();
+
+
+
     }
 
     public function saveStartquiz(Request $request){
