@@ -45,6 +45,8 @@ class SiteController extends Controller
         $newvisit->person_to_see=$request->person_to_see;
         $newvisit->save();
 
+        return redirect('/')->with('status','Thanks for your visit');
+
 
 
     }
