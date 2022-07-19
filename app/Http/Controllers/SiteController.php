@@ -9,6 +9,7 @@ use App\Models\LogSession;
 use App\Models\Question;
 use App\Models\Response;
 use App\Models\Visit;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -118,19 +119,34 @@ class SiteController extends Controller
     public function chatbot(){
         return view('chatbot');
     }
-    public function testChart(){
+    public function testChart(Request $request){
+        $answers = DB::table('questions')->join('answers','answers.question_id','=','questions.id')->where(function($query){
+            $query->whereDate('answers.created_at','<=',date('Y-m-d'));
+        })
+        ->select('question_id','code','answer',DB::raw('COUNT(answers.id) as response,CONCAT(code," ",answer) as identifier')
+        )->when($request->filled('question'),function($query)use($request){
+            $query->where('question_id',$request->question);
+        })->groupBy('question_id','code','answer')->get();
 
-        $chart_options = [
-            'chart_title' => 'Response statistics',
-            'report_type' => 'group_by_string',
-            'model' => 'App\Models\Answer',
-            'group_by_field' => 'answer',
-            'chart_type' => 'pie',
-            'filter_field' => 'created_at',
-            'filter_period' => 'month', // show users only registered this month
-        ];
-        $chart1 = new LaravelChart($chart_options);
-        
+        $question_anwers = [];
+
+        foreach($answers as $answer){
+            $question_anwers[$answer->identifier] = array($answer->identifier,$answer->response);
+        }
+        // dd($question_anwers);
+
+
+        // $chart_options = [
+        //     'chart_title' => 'Response statistics',
+        //     'report_type' => 'group_by_string',
+        //     'model' => 'App\Models\Answer',
+        //     'group_by_field' => 'answer',
+        //     'chart_type' => 'pie',
+        //     'filter_field' => 'created_at',
+        //     'filter_period' => 'month', // show users only registered this month
+        // ];
+        // $chart1 = new LaravelChart($chart_options);
+        $chart1 = json_encode(array_values($question_anwers));
         return view('chart1', compact('chart1'));
 
 
