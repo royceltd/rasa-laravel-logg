@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Models\Customer;
 use App\Models\Question;
 use App\Models\Response;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -19,8 +21,15 @@ class AdminController extends Controller
     }
 
     public function responses(){
-        $response=Response::orderBy('id','DESC')->get();
+        $response=Customer::orderBy('id','DESC')->get();
         return view('admin.responses',compact('response'));
+    }
+
+    public function getVisits(){
+        $visits= Visit::join('customers','customers.phone','=','visits.phone_number')
+        ->select('customers.*','visits.person_to_see','visits.created_at as dt','visits.id as uid')
+        ->orderBy('uid','DESC')->get();
+        return view('admin.visits',compact('visits'));
     }
 
     public function questions(){

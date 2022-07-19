@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <h1 class="h3 mb-2 text-gray-800">Clients</h1>
+        <h1 class="h3 mb-2 text-gray-800">Visits</h1>
         
     </div>
     <div class="col-sm-6">
@@ -20,7 +20,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Clients</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Visits</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -31,6 +31,7 @@
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Email</th>
+                        <th>Person To see</th>
                         <th>Date</th>
                         <th>Action</th>
                         
@@ -42,6 +43,7 @@
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Email</th>
+                        <th>Person To see</th>
                         <th>Date</th>
                         <th>Action</th>
                         
@@ -50,7 +52,7 @@
                 <tbody>
                     
                     @php $count=0 @endphp
-            @foreach($response as $response)
+            @foreach($visits as $response)
             @php
             $count++
             @endphp
@@ -59,9 +61,10 @@
                 <td>{{$response->name}}</td>
                 <td>{{$response->phone}}</td>
                 <td>{{$response->email}}</td>
+                <td>{{$response->person_to_see}}</td>
                 
                 <td>
-                    {{$response->created_at}}
+                    {{$response->dt}}
                 </td>
 
                 <td>

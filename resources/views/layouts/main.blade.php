@@ -53,6 +53,11 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{url('/admin/visits')}}>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Visits</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">

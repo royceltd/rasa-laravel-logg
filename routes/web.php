@@ -36,6 +36,7 @@ Route::prefix('admin')->group(function () {
     // Route::get('/answers',[AdminController::class,'getAnswers']);
     Route::get('/',[AdminController::class,'responses']);
     Route::get('/responses/{phone}',[AdminController::class,'getAnswers']);
+    Route::get('visits',[AdminController::class,'getVisits']);
 });
 Route::prefix('clients')->group(function () {
     Route::get('/startquiz',[SiteController::class,'getQuestions']);
