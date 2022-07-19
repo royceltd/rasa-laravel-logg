@@ -6,8 +6,10 @@ use App\Models\Answer;
 use App\Models\Customer;
 use App\Models\Question;
 use App\Models\Response;
+use App\Models\User;
 use App\Models\Visit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -36,6 +38,25 @@ class AdminController extends Controller
         $questions= Question::orderBy('id','ASC')->get();
         
         return view('admin.add-question',compact('questions'));
+    }
+    public function saveUsers(Request $request){
+        $usr= new User;
+        $usr->name= $request->name;
+        $usr->email= $request->email;
+        $usr->password= Hash::make($request->password);
+        $usr->role=$request->role;
+        $usr->save();
+
+        return back()->with('status','User Added Successfully');
+
+    }
+
+    public function users(){
+        $users= User::orderBy('id','ASC')->get();
+        
+        return view('admin.users',compact('users'));
+
+
     }
 
     public function AddQuestion(Request $request){
