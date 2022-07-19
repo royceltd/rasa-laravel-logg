@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('logs',[SiteController::class,'getLogs']);
 Route::get('sessions',[SiteController::class,'getSessions']);
+Route::get('register',[SiteController::class,'welcome']);
 // Route::get('/',[SiteController::class,'getSessions']);
 Route::get('/',[SiteController::class,'welcome']);
 Route::get('/new-customer',[SiteController::class,'newCustomer']);
@@ -46,5 +47,6 @@ Route::prefix('clients')->group(function () {
 });
 
 Auth::routes();
+Route::get('register',[SiteController::class,'welcome']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
