@@ -38,6 +38,7 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Date</th>
                         
                     </tr>
@@ -47,6 +48,7 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Date</th>
                         {{-- <th>Action</th> --}}
                     </tr>
@@ -70,6 +72,7 @@
                 <td>{{$count}}</td>
                 <td>{{$question->name}}</td>
                 <td>{{$question->email}}</td>
+                <td>{{$question->role}}</td>
                 
                 <td>{{$question->created_at}}</td>
                 {{-- <td>

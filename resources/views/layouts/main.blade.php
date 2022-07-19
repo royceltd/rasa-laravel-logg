@@ -63,16 +63,11 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
+
+            @if(auth()->user()->role=='Admin')
             <div class="sidebar-heading">
-                Questions
+                Admin
             </div>
-
-            
-
-           
-
-          
-           
 
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
@@ -90,6 +85,8 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Client Form</span></a>
             </li>
+
+            @endif
 
             <!-- Nav Item - Tables -->
            
