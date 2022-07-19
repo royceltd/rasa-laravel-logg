@@ -41,7 +41,7 @@ var data_ = <?php echo $chart1; ?>
       // Set chart options
       var options = {'title':'Analysis of Response',
                      'width':500,
-                     'height':300};
+                     'height':500};
 
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
