@@ -51,6 +51,10 @@ class AdminController extends Controller
 
     }
 
+    public function statistics(){
+        
+    }
+
     public function users(){
         $users= User::orderBy('id','ASC')->get();
         

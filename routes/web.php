@@ -40,6 +40,7 @@ Route::prefix('admin')->group(function () {
     Route::get('visits',[AdminController::class,'getVisits']);
     Route::get('users',[AdminController::class,'users']);
     Route::post('users',[AdminController::class,'saveUsers']);
+    Route::get('statistics',[AdminController::class,'statistics']);
 });
 Route::prefix('clients')->group(function () {
     Route::get('/startquiz',[SiteController::class,'getQuestions']);

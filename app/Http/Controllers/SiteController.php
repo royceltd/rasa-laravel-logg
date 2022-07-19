@@ -10,6 +10,7 @@ use App\Models\Question;
 use App\Models\Response;
 use App\Models\Visit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class SiteController extends Controller
@@ -45,7 +46,7 @@ class SiteController extends Controller
         $newvisit->person_to_see=$request->person_to_see;
         $newvisit->save();
 
-        return redirect('/')->with('status','Thanks for your visit');
+        return redirect('/')->with('status','Welcome to KRB. Please give us your feedback after.');
 
 
 
@@ -76,7 +77,7 @@ class SiteController extends Controller
         }
 
 
-        return back()->with('status','Thanks for your feedback');
+        return redirect('/')->with('status','Thanks for your feedback');
 
         
 
@@ -117,21 +118,33 @@ class SiteController extends Controller
         return view('chatbot');
     }
     public function testChart(){
-        $chartjs = app()->chartjs
-        ->name('pieChartTest')
-        ->type('pie')
-        ->size(['width' => 400, 'height' => 200])
-        ->labels(['1', '2','3','4','5'])
-        ->datasets([
-            [
-                'backgroundColor' => ['#FF6384', '#36A2EB','red'],
-                'hoverBackgroundColor' => ['#FF6384', '#36A2EB'],
-                'data' => [10, 20,30,40,50]
-            ]
-        ])
-        ->options([]);
+    //     $collection = Answer::groupBy('answer')
+    //     ->selectRaw('count(*) as total, answer')
+    //     ->get();
+    // dd($collection);
 
-return view('example', compact('chartjs'));
+        $user_info = DB::table('answers')
+        ->select('answer', DB::raw('count(*) as total'))
+        ->groupBy('answer','question_id')
+        // ->get();
+        ->pluck('total','answer','question_id');
+
+        dd($user_info);
+//         $chartjs = app()->chartjs
+//         ->name('pieChartTest')
+//         ->type('pie')
+//         ->size(['width' => 400, 'height' => 200])
+//         ->labels(['1', '2','3','4','5'])
+//         ->datasets([
+//             [
+//                 'backgroundColor' => ['#FF6384', '#36A2EB','red'],
+//                 'hoverBackgroundColor' => ['#FF6384', '#36A2EB'],
+//                 'data' => [10, 20,30,40,50]
+//             ]
+//         ])
+//         ->options([]);
+
+// return view('example', compact('chartjs'));
 
     }
 

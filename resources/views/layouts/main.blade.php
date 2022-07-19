@@ -80,6 +80,11 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Users</span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href={{url('/admin/statistics')}}>
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Statistic</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url('/')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
