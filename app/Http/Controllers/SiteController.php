@@ -12,6 +12,7 @@ use App\Models\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class SiteController extends Controller
 {
@@ -118,6 +119,22 @@ class SiteController extends Controller
         return view('chatbot');
     }
     public function testChart(){
+
+        $chart_options = [
+            'chart_title' => 'Response statistics',
+            'report_type' => 'group_by_string',
+            'model' => 'App\Models\Answer',
+            'group_by_field' => 'answer',
+            'chart_type' => 'pie',
+            'filter_field' => 'created_at',
+            'filter_period' => 'month', // show users only registered this month
+        ];
+        $chart1 = new LaravelChart($chart_options);
+        
+        return view('chart1', compact('chart1'));
+
+
+
     //     $collection = Answer::groupBy('answer')
     //     ->selectRaw('count(*) as total, answer')
     //     ->get();

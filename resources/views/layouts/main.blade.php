@@ -81,7 +81,7 @@
                     <span>Users</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href={{url('/admin/statistics')}}>
+                <a class="nav-link" href={{url('/testchart')}}>
                     <i class="fas fa-fw fa-table"></i>
                     <span>Statistic</span></a>
             </li>

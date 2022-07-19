@@ -30,6 +30,7 @@ Route::get('/feedback',[SiteController::class,'getQuestions']);
 Route::get('session/{id}',[SiteController::class,'getLogs']);
 Route::get('chatbot',[SiteController::class,'chatbot']);
 Route::get('testchart',[SiteController::class,'testChart']);
+Route::get('admin/statistics',[SiteController::class,'testChart']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/add-question',[AdminController::class,'questions']);
