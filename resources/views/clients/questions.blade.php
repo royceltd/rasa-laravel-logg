@@ -19,16 +19,12 @@
         <div class="flex flex-col mx-20">
             <div class="mx-auto bg-green-700 p-4 rounded-lg text-white text-2xlf font-black">Thank for visiting Kenya Roads Board.</div>
             <div class="p-5">
-                We care about your experience! We would like you to focus on the satisfaction level that you have experienced in KRB. 
-On a scale of 1 to 5 where 1 IS VERY DISSATISFIED and 5 IS VERY SATISFIED, how satisfied are you with the following areas of customer care at KRB?
+                We care about your experience! We would like you to focus on the satisfaction level that you have experienced in KRB. Please let us know how VERY SATISFIED – VERY DISSATISFIED you are with the following areas of customer care at KRB.
 
             </div>
 
         </div>
-        <div class="flex flex-row">
-            <a href="{{url('/admin')}}" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Admin</a>
-
-        </div>
+        
         <form action="{{url('clients/startquiz')}}" method="POST">
 
             @csrf
