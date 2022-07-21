@@ -9,6 +9,7 @@ use App\Models\LogSession;
 use App\Models\Question;
 use App\Models\Response;
 use App\Models\Visit;
+use App\Models\Staff;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,8 @@ class SiteController extends Controller
     }
 
     public function newCustomer(){
-        return view('clients.new-customer');
+        $staff= Staff::orderBy('name','ASC')->get();
+        return view('clients.new-customer',compact('staff'));
     }
 
     public function saveCustomer(Request $request){
