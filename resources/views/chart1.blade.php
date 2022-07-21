@@ -1,22 +1,46 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Statistics</div>
 
-                <div class="card-body">
+<form>
+    <div class="row">
+        <div class="col-sm-8">
+            <select class="js-example-basic-single form-control" name="question">
+                <option value="">ALL</option>
+                @foreach($questions as $qn)
+                <option value="{{$qn->id}}">{{$qn->title}}</option>
 
-                    <div id="chart_div"></div>
+                @endforeach
+                 
+              </select>
 
-                </div>
-
-            </div>
         </div>
+
     </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-12">
+           <b>{{$question}}</b> 
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="submit" class="btn btn-primary" />
+
+        </div>
+        
+
+    </div>
+</form>
+<div class="card-body">
+
+    
+
+    <div id="chart_div"></div>
+
 </div>
+
 <script type="text/javascript">
 
 var data_ = <?php echo $chart1; ?>
@@ -40,7 +64,7 @@ var data_ = <?php echo $chart1; ?>
 
       // Set chart options
       var options = {'title':'Analysis of Response',
-                     'width':500,
+                     'width':'100%',
                      'height':500};
 
       // Instantiate and draw our chart, passing in some options.

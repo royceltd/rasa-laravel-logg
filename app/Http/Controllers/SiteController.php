@@ -120,64 +120,24 @@ class SiteController extends Controller
         return view('chatbot');
     }
     public function testChart(Request $request){
-        $answers = DB::table('questions')->join('answers','answers.question_id','=','questions.id')->where(function($query){
+        $answers = DB::table('questions')->join('answers','answers.question_id','=','questions.id')->join('ratings','ratings.id','=','answers.answer')->where(function($query){
             $query->whereDate('answers.created_at','<=',date('Y-m-d'));
         })
-        ->select('question_id','code','answer',DB::raw('COUNT(answers.id) as response,CONCAT(code," ",answer) as identifier')
+        ->select('question_id','code','answer','name',DB::raw('COUNT(answers.id) as response,CONCAT(code,": ",name) as identifier')
         )->when($request->filled('question'),function($query)use($request){
             $query->where('question_id',$request->question);
-        })->groupBy('question_id','code','answer')->get();
+        })->groupBy('question_id','code','answer','name')->get();
 
         $question_anwers = [];
 
         foreach($answers as $answer){
             $question_anwers[$answer->identifier] = array($answer->identifier,$answer->response);
         }
-        // dd($question_anwers);
-
-
-        // $chart_options = [
-        //     'chart_title' => 'Response statistics',
-        //     'report_type' => 'group_by_string',
-        //     'model' => 'App\Models\Answer',
-        //     'group_by_field' => 'answer',
-        //     'chart_type' => 'pie',
-        //     'filter_field' => 'created_at',
-        //     'filter_period' => 'month', // show users only registered this month
-        // ];
-        // $chart1 = new LaravelChart($chart_options);
+       
         $chart1 = json_encode(array_values($question_anwers));
         return view('chart1', compact('chart1'));
 
 
-
-    //     $collection = Answer::groupBy('answer')
-    //     ->selectRaw('count(*) as total, answer')
-    //     ->get();
-    // dd($collection);
-
-        $user_info = DB::table('answers')
-        ->select('answer', DB::raw('count(*) as total'))
-        ->groupBy('answer','question_id')
-        // ->get();
-        ->pluck('total','answer','question_id');
-
-        dd($user_info);
-//         $chartjs = app()->chartjs
-//         ->name('pieChartTest')
-//         ->type('pie')
-//         ->size(['width' => 400, 'height' => 200])
-//         ->labels(['1', '2','3','4','5'])
-//         ->datasets([
-//             [
-//                 'backgroundColor' => ['#FF6384', '#36A2EB','red'],
-//                 'hoverBackgroundColor' => ['#FF6384', '#36A2EB'],
-//                 'data' => [10, 20,30,40,50]
-//             ]
-//         ])
-//         ->options([]);
-
-// return view('example', compact('chartjs'));
 
     }
 

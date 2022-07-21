@@ -9,6 +9,7 @@ use App\Models\Response;
 use App\Models\User;
 use App\Models\Visit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -51,9 +52,6 @@ class AdminController extends Controller
 
     }
 
-    public function statistics(){
-        
-    }
 
     public function users(){
         $users= User::orderBy('id','ASC')->get();
@@ -66,7 +64,8 @@ class AdminController extends Controller
     public function AddQuestion(Request $request){
         $quiz= new Question;
         $quiz->title= $request->question;
-        $quiz->added_by= 1;
+        $quiz->code= $request->code;
+        $quiz->added_by= auth()->user()->id;
         $quiz->save();
 
         return back()->with('status','Question added successfully');
@@ -79,5 +78,35 @@ class AdminController extends Controller
         ->where('answers.phone_number',$id)
         ->get();
         return view('admin.answers', compact('answers'));
+    }
+
+    public function statistics(Request $request){
+        
+        $answers = DB::table('questions')->join('answers','answers.question_id','=','questions.id')->join('ratings','ratings.id','=','answers.answer')->where(function($query){
+            $query->whereDate('answers.created_at','<=',date('Y-m-d'));
+        })
+        ->select('question_id','code','answer','name',DB::raw('COUNT(answers.id) as response,CONCAT(code,": ",name) as identifier')
+        )->when($request->filled('question'),function($query)use($request){
+            $query->where('question_id',$request->question);
+        })->groupBy('question_id','code','answer','name')->get();
+
+        $question_anwers = [];
+
+        foreach($answers as $answer){
+            $question_anwers[$answer->identifier] = array($answer->identifier,$answer->response);
+        }
+       
+        $chart1 = json_encode(array_values($question_anwers));
+        $questions= Question::all();
+        if($request->question){
+            $question="Chart for: ". Question::find($request->question)->title;
+        }else{
+            $question="";
+
+        }
+        return view('chart1', compact('chart1','questions','question'));
+
+
+
     }
 }

@@ -46,8 +46,9 @@
                     <tr>
                         <th>#</th>
                         <th>Question</th>
+                        <th>Code</th>
                         <th>Date</th>
-                        <th>Action</th>
+                       
                     </tr>
                 </tfoot>
                 <tbody>
@@ -68,11 +69,12 @@
             <tr>
                 <td>{{$count}}</td>
                 <td>{{$question->title}}</td>
+                <td>{{$question->code}}</td>
                 
                 <td>{{$question->created_at}}</td>
-                <td>
+                {{-- <td>
                    <a href="{{url('/delete-question',$question->id)}}"  class="btn btn-sm btn-success">Delete</a>
-                </td>
+                </td> --}}
                
             </tr>
             
@@ -102,8 +104,23 @@
         </div>
         <div class="modal-body">
           <div class="row">
+            
               <div class="col-sm-12">
-                  <textarea class="form-control" rows="7" required name="question"> </textarea>
+                <div class="form-group">
+                    <label>Question</label>
+                    <textarea class="form-control" rows="2" required name="question"> </textarea>
+    
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            
+              <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Code</label>
+                    <input class="form-control" placeholder="Question Code" required name="code">
+    
+                </div>
               </div>
           </div>
         </div>
