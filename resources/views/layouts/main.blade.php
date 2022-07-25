@@ -37,7 +37,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion text-red" id="accordionSidebar" style="background: green">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -54,12 +54,12 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href={{url('/admin')}}>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span><b>Dashboard</b></span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href={{url('/admin/visits')}}>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Visits</span></a>
@@ -91,7 +91,7 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Statistic</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="{{url('/')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Client Form</span></a>
