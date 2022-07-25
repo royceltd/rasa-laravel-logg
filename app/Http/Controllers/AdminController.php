@@ -81,9 +81,17 @@ class AdminController extends Controller
     }
 
     public function statistics(Request $request){
+
         
         $answers = DB::table('questions')->join('answers','answers.question_id','=','questions.id')->join('ratings','ratings.id','=','answers.answer')->where(function($query){
-            $query->whereDate('answers.created_at','<=',date('Y-m-d'));
+           
+        })
+       
+        ->when($request->filled('from'),function($query)use($request){
+            $query->whereDate('answers.created_at','>=',$request->from);
+        })
+        ->when($request->filled('to'),function($query)use($request){
+            $query->whereDate('answers.created_at','<=',$request->to);
         })
         ->select('question_id','code','answer','name',DB::raw('COUNT(answers.id) as response,CONCAT(code,": ",name) as identifier')
         )->when($request->filled('question'),function($query)use($request){

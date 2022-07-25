@@ -4,15 +4,39 @@
 
 <form>
     <div class="row">
-        <div class="col-sm-8">
-            <select class="js-example-basic-single form-control" name="question">
-                <option value="">ALL</option>
-                @foreach($questions as $qn)
-                <option value="{{$qn->id}}">{{$qn->title}}</option>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>
+                    Question
+                </label>
+                <select class="js-example-basic-single form-control" name="question">
+                    <option value="">ALL</option>
+                    @foreach($questions as $qn)
+                    <option value="{{$qn->id}}">{{$qn->title}}</option>
+    
+                    @endforeach
+                     
+                  </select>
 
-                @endforeach
-                 
-              </select>
+            </div>
+
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>
+                    From
+                </label>
+                <input type="date" class="form-control" name="from"  />
+            </div>
+
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>
+                    To
+                </label>
+                <input type="date" class="form-control" name="to" />
+            </div>
 
         </div>
 
