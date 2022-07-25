@@ -117,4 +117,31 @@ class AdminController extends Controller
 
 
     }
+
+    public function changePassword(){
+        return view('admin.change-password');
+    }
+
+    public function pChangePassword(Request $request){
+        $this->validate($request,[
+            'current_password' => 'required',
+            'new_password' => 'required|min:6',
+            'confirm_password' => 'required|same:new_password',
+        ]);
+
+        if (!(Hash::check($request->get('current-password'), auth()->user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Your current password does not matches with the password.");
+        }
+
+        $usr= User::find(auth()->user()->id);
+        $usr->password=Hash::make($request->get('current-password'));
+        $usr->save();
+        return redirect()->back()->with("status","Password Changed successfully");
+
+
+
+
+
+    }
 }
