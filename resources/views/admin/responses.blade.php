@@ -22,6 +22,11 @@
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Clients</h6>
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <a href="{{url('admin/excel-export')}}" class="btn btn-primary">Export database</a>
+        </div>
+    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

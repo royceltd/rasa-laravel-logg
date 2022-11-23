@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CustomersExport;
 use App\Models\Answer;
 use App\Models\Customer;
 use App\Models\Question;
@@ -11,6 +12,7 @@ use App\Models\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -143,5 +145,9 @@ class AdminController extends Controller
 
 
 
+    }
+
+    public function excelExport(){
+        return Excel::download(new CustomersExport, 'customers.xlsx');
     }
 }

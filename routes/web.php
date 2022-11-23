@@ -44,6 +44,7 @@ Route::prefix('admin')->group(function () {
     Route::get('statistics',[AdminController::class,'statistics']);
     Route::get('change-password',[AdminController::class,'changePassword']);
     Route::post('change-password',[AdminController::class,'pChangePassword']);
+    Route::get('excel-export',[AdminController::class,'excelExport']);
 });
 Route::prefix('clients')->group(function () {
     Route::get('/startquiz',[SiteController::class,'getQuestions']);
